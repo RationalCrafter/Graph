@@ -1,0 +1,148 @@
+Key Topics from CLRS3 on Graphs:
+1. Graph Representations (CLRS3, Section 22.1)
+
+    Adjacency Matrix: Best for dense graphs (i.e., graphs with many edges). It allows for quick edge lookups, but it uses O(V2)O(V2) space.
+        Pros: Simple, fast for checking if an edge exists.
+        Cons: Space inefficient for sparse graphs.
+    Adjacency List: Best for sparse graphs, using O(V+E)O(V+E) space. It's easier to iterate over neighbors of a node.
+        Pros: Efficient in terms of space for sparse graphs.
+        Cons: Slower to check for specific edges compared to an adjacency matrix.
+
+Exercise 1:
+
+    Implement a graph using both adjacency list and adjacency matrix in Python.
+    Create a simple directed, unweighted graph with 5 vertices.
+    Compare time complexities of basic operations (e.g., edge addition, checking for an edge).
+
+2. Breadth-First Search (BFS) (CLRS3, Section 22.2)
+
+BFS explores all nodes at the current depth level before moving to nodes at the next depth level. It is optimal for finding the shortest path in an unweighted graph.
+
+    Input: Graph G=(V,E)G=(V,E) and a source node ss.
+    Output: Distances from the source to all reachable nodes and the BFS tree.
+    BFS works best with adjacency lists for quick traversal of neighbors.
+
+Pseudocode (CLRS3):
+
+python
+
+def BFS(G, s):
+    for each vertex u in G.V - {s}:
+        u.color = 'WHITE'
+        u.d = inf
+        u.parent = None
+    s.color = 'GRAY'
+    s.d = 0
+    s.parent = None
+    queue = [s]
+    while queue is not empty:
+        u = queue.pop(0)
+        for each v in G.adj[u]:
+            if v.color == 'WHITE':
+                v.color = 'GRAY'
+                v.d = u.d + 1
+                v.parent = u
+                queue.append(v)
+        u.color = 'BLACK'
+
+Exercise 2:
+
+    Implement BFS for a graph represented using an adjacency list.
+    Test BFS on both directed and undirected graphs.
+    Extend BFS to compute the shortest path from a source to all other vertices.
+
+3. Depth-First Search (DFS) (CLRS3, Section 22.3)
+
+DFS dives as deep as possible along a branch before backtracking. It is widely used for connectivity checking, cycle detection, topological sorting, etc.
+
+Pseudocode (CLRS3):
+
+python
+
+def DFS(G):
+    for each vertex u in G.V:
+        u.color = 'WHITE'
+        u.parent = None
+    time = 0
+    for each vertex u in G.V:
+        if u.color == 'WHITE':
+            DFS-Visit(G, u, time)
+
+def DFS-Visit(G, u, time):
+    time = time + 1
+    u.d = time
+    u.color = 'GRAY'
+    for each v in G.adj[u]:
+        if v.color == 'WHITE':
+            v.parent = u
+            DFS-Visit(G, v, time)
+    u.color = 'BLACK'
+    time = time + 1
+    u.f = time
+
+Exercise 3:
+
+    Implement DFS.
+    Use DFS to identify connected components in an undirected graph.
+    Modify DFS to find the topological order of a directed acyclic graph (DAG).
+
+4. Dijkstra’s Algorithm (CLRS3, Section 24.3)
+
+Dijkstra’s is a greedy algorithm to find the shortest paths from a source node to all other nodes in a weighted, non-negative graph. It uses a priority queue to efficiently fetch the next vertex with the smallest tentative distance.
+
+Key Idea:
+
+    Maintain a set of explored vertices, and in each iteration, explore the vertex with the smallest tentative distance from the source.
+
+Pseudocode (CLRS3):
+
+python
+
+def Dijkstra(G, w, s):
+    initialize_single_source(G, s)
+    S = []
+    Q = G.V
+    while Q is not empty:
+        u = extract_min(Q)
+        S.append(u)
+        for each vertex v in G.adj[u]:
+            relax(u, v, w)
+
+Exercise 4:
+
+    Implement Dijkstra’s algorithm using a priority queue (min-heap).
+    Compare it with the basic BFS for unweighted graphs to understand the time differences.
+
+5. Minimum Spanning Trees: Kruskal’s and Prim’s Algorithms (CLRS3, Sections 23.1–23.2)
+
+Kruskal’s Algorithm:
+
+    A greedy algorithm that finds an MST by sorting edges and picking the smallest edge that doesn’t form a cycle (union-find is typically used).
+
+Prim’s Algorithm:
+
+    Another greedy algorithm, but it grows the MST one vertex at a time, always adding the smallest edge connecting a new vertex.
+
+Exercise 5:
+
+    Implement Kruskal’s algorithm using a union-find data structure.
+    Implement Prim’s algorithm using a priority queue.
+    Test both on the same graph and compare the results and performance.
+
+Prescribed Exercises:
+
+    Graph Representations: Implement both adjacency lists and adjacency matrices and compare their space usage and performance on operations (adding edges, checking connectivity).
+
+    BFS and DFS: Implement BFS and DFS, modify DFS for connected components and topological sorting.
+
+    Shortest Paths: Implement Dijkstra’s algorithm and compare its performance with BFS for unweighted graphs.
+
+    Minimum Spanning Tree: Implement Kruskal’s and Prim’s algorithms, and compare their results and runtime.
+
+Expansion Topics:
+
+    Bellman-Ford Algorithm (for graphs with negative weights).
+    Floyd-Warshall Algorithm (for finding all pairs shortest paths).
+    Graph traversal in cycles and strongly connected components (SCC) using Kosaraju’s Algorithm or Tarjan’s Algorithm.
+
+These are key topics to master in graph theory from CLRS. As you progress, I can help you tackle specific problems, code together, or refine your understanding further!
