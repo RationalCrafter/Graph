@@ -10,16 +10,16 @@ Core operations:
 
 class Graph:
     def __init__(self) -> None:
-        pass
+        raise NotImplementedError
 
     def add_vertex(self, v) -> None:
-        pass
+        raise NotImplementedError
 
     def add_edge(self, u, v) -> None:
-        pass
+        raise NotImplementedError
 
     def has_vertex(self, v) -> bool:
-        pass
+        raise NotImplementedError
 
     def has_edge(self, u, v) -> bool:
-        pass
+        raise NotImplementedError
