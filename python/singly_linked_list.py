@@ -56,7 +56,6 @@ class SinglyLinkedList:
 
     def __next__(self):
         if self.current_node is None:
-            print("Raising StopIteration")
             raise StopIteration
         key = self.current_node.key
         self.current_node = self.current_node.next_node
