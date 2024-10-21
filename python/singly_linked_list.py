@@ -79,45 +79,63 @@ class SinglyLinkedList:
         return None
 
 
-if __name__ == "__main__":
-    print("Debugging and Benchmarks (invoked directly)")
-    # testing basic functionality
-    print("Creating a node...")
-    print("Node with no arguments to the constructor")
-    testNode = Node()
-    if testNode.key is None:
-        print("testNode.key: OK!")
-    if testNode.next_node is None:
-        print("testNode.next_node: OK!")
-    print("Node with a key argument to the constructor")
-    testNode = Node(key=2)
-    if testNode.key == 2:
-        print("testNode.key: OK!")
-    if testNode.next_node is None:
-        print("testNode.next_node: OK!")
-    print("Node with all arguments to the constructor")
-    testNode = Node(key=2, next_node=Node(key=3))
-    if testNode.key == 2:
-        print("testNode.key: OK!")
-    if testNode.next_node is not None:
-        print(
-            f"testNode.next_node!=None\ntestNode.next_node={testNode.next_node}\ntestNode.next_node.key={testNode.next_node.key}"
-        )
-    # test inserting a larger number of keys
-    print("Inserting elements on the list")
-    NUM_KEYS = 10
-    linked_list = SinglyLinkedList()
-    print(f"is_empty status == {linked_list.is_empty()}")
-    for k in range(NUM_KEYS):
-        linked_list.insert_front(k)
-        print(f"Inserting k={k}")
-        print(f"List head={linked_list.head}")
-
-    print("Insertion Completed.\nNew status:")
-    print(f"is_empty status == {linked_list.is_empty()}")
-
-    print("Testing default iteration")
-    for k in linked_list:
-        print(f"Retrieved key = {k}")
-
-    print(f"5 in linked_list? {5 in linked_list}")
+# if __name__ == "__main__":
+#    print("Debugging and Benchmarks (invoked directly)")
+#    # testing basic functionality
+#    print("Creating a node...")
+#    print("Node with no arguments to the constructor")
+#    testNode = Node()
+#    if testNode.key is None:
+#        print("testNode.key: OK!")
+#    if testNode.next_node is None:
+#        print("testNode.next_node: OK!")
+#    print("Node with a key argument to the constructor")
+#    testNode = Node(key=2)
+#    if testNode.key == 2:
+#        print("testNode.key: OK!")
+#    if testNode.next_node is None:
+#        print("testNode.next_node: OK!")
+#    print("Node with all arguments to the constructor")
+#    testNode = Node(key=2, next_node=Node(key=3))
+#    if testNode.key == 2:
+#        print("testNode.key: OK!")
+#    if testNode.next_node is not None:
+#        print(
+#            f"testNode.next_node!=None\ntestNode.next_node={testNode.next_node}\ntestNode.next_node.key={testNode.next_node.key}"
+#        )
+#    # test inserting a larger number of keys
+#    print("Inserting elements on the list")
+#    NUM_KEYS = 10
+#    linked_list = SinglyLinkedList()
+#    print(f"is_empty status == {linked_list.is_empty()}")
+#    for k in range(NUM_KEYS):
+#        linked_list.insert_front(k)
+#        print(f"Inserting k={k}")
+#        print(f"List head={linked_list.head}")
+#
+#    print("Insertion Completed.\nNew status:")
+#    print(f"is_empty status == {linked_list.is_empty()}")
+#
+#    print("Testing default iteration")
+#    for k in linked_list:
+#        print(f"Retrieved key = {k}")
+#
+#    print(f"5 in linked_list? {5 in linked_list}")
+#    print(f"Deleting 5 from the list")
+#    print(f"5 in linked_list? {5 in linked_list}")
+#    # this segment is just for profiling
+#    NUM_KEYS = 10000
+#    big_sll = SinglyLinkedList()
+#    # insertion
+#    for k in range(NUM_KEYS):
+#        big_sll.insert_front(k)
+#    # iteration
+#    print("Iterating: ")
+#    for k in big_sll:
+#        pass
+#    # __repr__ call
+#    for _ in range(33):
+#        print(big_sll)  # warning: will polute the screen!
+#    # deletion
+#    for k in big_sll:
+#        big_sll.delete_front()
