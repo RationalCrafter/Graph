@@ -39,6 +39,17 @@ class AdjacencyMatrixGraph(Graph):
                 row.append(0)  # Add a new column with 0s for the new vertex
             self.adj_mtrx.append([0] * (size + 1))  # Add a new row
 
+    def get_vertices(self):
+        return self.vertex_to_index.keys()
+
+    def get_neighbors(self, v):
+        is_neighbor = self.adj_mtrx[self.vertex_to_index[v]]
+        neighbors = []
+        for i in range(len(is_neighbor)):
+            if is_neighbor[i] == 1:
+                neighbors.append(self.index_to_vertex[i])
+        return neighbors
+
 
 if __name__ == "__main__":
     g = AdjacencyMatrixGraph()
@@ -57,3 +68,6 @@ if __name__ == "__main__":
     g.add_edge(3, 6)
     g.add_edge(6, 6)
     print(g.adj_mtrx)
+    for vertex in g:
+        print(vertex)
+        print(g.get_neighbors(vertex))

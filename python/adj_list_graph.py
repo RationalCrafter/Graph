@@ -29,6 +29,12 @@ class AdjacencyListGraph(Graph):
         else:
             return u in self.adj_lst and v in self.adj_lst[u]
 
+    def get_vertices(self):
+        return self.adj_lst.keys()
+
+    def get_neighbors(self, v):
+        return self.adj_lst[v]
+
 
 if __name__ == "__main__":
     g = AdjacencyListGraph()
@@ -47,3 +53,5 @@ if __name__ == "__main__":
     g.add_edge(3, 6)
     g.add_edge(6, 6)
     print(g.adj_lst)
+    for vertex in g:
+        print(vertex)

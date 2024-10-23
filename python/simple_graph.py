@@ -9,6 +9,8 @@ Core operations:
 
 
 class Graph:
+    """Graph base class"""
+
     def __init__(self) -> None:
         raise NotImplementedError
 
@@ -22,4 +24,16 @@ class Graph:
         raise NotImplementedError
 
     def has_edge(self, u, v) -> bool:
+        raise NotImplementedError
+
+    def get_vertices(self):
+        return NotImplementedError
+
+    def __iter__(self):
+        """This method should return an iterator over the graph's vertices."""
+        return iter(self.get_vertices())
+
+    def get_neighbors(self, v):
+        """Return the neighbors of v.
+        Specific to each graph representation."""
         raise NotImplementedError
