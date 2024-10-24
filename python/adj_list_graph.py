@@ -17,17 +17,16 @@ class AdjacencyListGraph(Graph):
     def add_edge(self, u, v) -> None:
         if u in self.adj_lst:
             if v not in self.adj_lst[u]:
-                self.adj_lst[u].insert_front([v])
+                self.adj_lst[u].insert_front(v)
 
     def has_vertex(self, v) -> bool:
         return v in self.adj_lst
 
     def has_edge(self, u, v) -> bool:
-        if u not in self.adj_lst or v not in self.adj_lst:
+        if u in self.adj_lst and v in self.adj_lst[u]:
             # again be careful with the directed/undirected dichotomy
-            return False
-        else:
-            return u in self.adj_lst and v in self.adj_lst[u]
+            return True
+        return False
 
     def get_vertices(self):
         return self.adj_lst.keys()
@@ -55,3 +54,5 @@ if __name__ == "__main__":
     print(g.adj_lst)
     for vertex in g:
         print(vertex)
+    print(g.has_edge(1, 2))
+    print(g.has_edge(3, 6))
