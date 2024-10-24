@@ -42,6 +42,14 @@ class SinglyLinkedList:
             current = current.next_node
         return f"SinglyLinkedList({','.join(nodes)})"
 
+    def __contains__(self, item):
+        current_node = self.head
+        while current_node is not None:
+            if current_node.key == item:
+                return True
+            current_node = current_node.next_node
+        return False
+
     def is_empty(self):
         """Check's if the current linked list contains any nodes.
 
