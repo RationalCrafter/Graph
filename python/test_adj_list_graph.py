@@ -57,3 +57,7 @@ def test_fully_connected_10v_creation():
     for i in range(10):
         for j in range(10):
             assert g.has_edge(i, j) is True
+    # test nonexistent edges
+    for i in range(10, 20):
+        for j in range(10, 20):
+            assert g.has_edge(i, j) is False
