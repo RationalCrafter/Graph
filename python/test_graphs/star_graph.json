@@ -1,0 +1,9 @@
+{
+  "vertices": ["center", "leaf1", "leaf2", "leaf3"],
+  "edges": {
+    "center": ["leaf1", "leaf2", "leaf3"],
+    "leaf1": ["center"],
+    "leaf2": ["center"],
+    "leaf3": ["center"]
+  }
+}
