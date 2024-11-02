@@ -22,8 +22,8 @@ def bfs(graph: Graph, s):
         u = queue.pop()
         # print(f"d={distance}")
         for v in graph.get_neighbors(u):
-            #            print(v)
-            v = v[0]
+            # print(type(v))
+            # v = v[0]
             if color[v] == "white":
                 color[v] = "gray"
                 distance[v] = distance[u] + 1
