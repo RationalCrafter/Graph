@@ -1,6 +1,6 @@
 from simple_graph import Graph
-from adj_list_graph import AdjacencyListGraph
 import json
+from adj_list_graph import AdjacencyListGraph
 
 
 def save_graph_to_json(graph: Graph, filename: str):
@@ -18,7 +18,8 @@ def read_graph_from_json(filename: str, graph_type) -> Graph:
         g = graph_type()
         for v in data["vertices"]:
             g.add_vertex(v)
-        print(data["edges"])
+        #            print(v)
+        #        print(data["edges"])
         for u in data["edges"]:
             for v in data["edges"][u]:
                 g.add_edge(u, v)
@@ -26,17 +27,21 @@ def read_graph_from_json(filename: str, graph_type) -> Graph:
 
 
 if __name__ == "__main__":
-    g = AdjacencyListGraph()
-    g.add_vertex("a")
-    g.add_vertex("b")
-    g.add_vertex("c")
-    g.add_edge("a", "b")
-    g.add_edge("b", "c")
-    g.add_edge("c", "a")
-    print(g)
-    print(*g.get_vertices())
-    save_graph_to_json(g, "test_graph.json")
-    print("Reading saved data...")
-    new_g = read_graph_from_json("test_graph.json", AdjacencyListGraph)
-    print(new_g.get_vertices())
-    print(new_g.get_neighbors("a"))
+    # g = AdjacencyListGraph()
+    # g.add_vertex("a")
+    # g.add_vertex("b")
+    # g.add_vertex("c")
+    # g.add_edge("a", "b")
+    # g.add_edge("b", "c")
+    # g.add_edge("c", "a")
+    # print(g)
+    # print(*g.get_vertices())
+    # save_graph_to_json(g, "test_graph.json")
+    # print("Reading saved data...")
+    # new_g = read_graph_from_json("test_graph.json", AdjacencyListGraph)
+    # print(new_g.get_vertices())
+    # print(new_g.get_neighbors("a"))
+    final_g = read_graph_from_json(
+        "test_graphs//hundred_node_graph.json", AdjacencyListGraph
+    )
+    print(final_g)

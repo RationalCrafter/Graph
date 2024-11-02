@@ -18,8 +18,9 @@ def bfs(graph: Graph, s):
     queue = deque()
     queue.append(s)
     while queue:
+        # print(f"Q={queue}")
         u = queue.pop()
-        #        print(u)
+        # print(f"d={distance}")
         for v in graph.get_neighbors(u):
             #            print(v)
             v = v[0]
