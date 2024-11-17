@@ -1,9 +1,10 @@
-from simple_graph import Graph
 import json
+from simple_graph import Graph
 from adj_list_graph import AdjacencyListGraph
 
 
 def save_graph_to_json(graph: Graph, filename: str):
+    """Saves the graph to a json file named 'filename.json'."""
     data = {
         "vertices": [*graph.get_vertices()],
         "edges": {v: graph.get_neighbors(v) for v in graph},
@@ -13,6 +14,9 @@ def save_graph_to_json(graph: Graph, filename: str):
 
 
 def read_graph_from_json(filename: str, graph_type) -> Graph:
+    """Reads a graph serialized as json to 'filename.json' into a variable
+    of type graph_type. This function might throw an exception since it relies of file I/O with 'filename.json' which may not exist.
+    """
     with open(filename, "r") as json_file:
         data = json.load(json_file)
         g = graph_type()
@@ -42,6 +46,6 @@ if __name__ == "__main__":
     # print(new_g.get_vertices())
     # print(new_g.get_neighbors("a"))
     final_g = read_graph_from_json(
-        "test_graphs//hundred_node_graph.json", AdjacencyListGraph
+        "tests//test_graphs//hundred_node_graph.json", AdjacencyListGraph
     )
     print(final_g)
