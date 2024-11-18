@@ -1,7 +1,7 @@
 from simple_graph import Graph
 
 
-def dfs(graph: Graph, detect_back_edges=True):
+def dfs(graph: Graph, detect_back_edges=False):
     """Depth-first search implementation for Graph types"""
     # set colors to keep track of the exploration status
     color = {u: "white" for u in graph}
