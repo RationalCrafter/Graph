@@ -25,7 +25,7 @@ def dfs(graph: Graph, detect_back_edges=False):
             if color[v] == "white":
                 predecessor[v] = u
                 dfs_visit(graph, v, time)
-            if detect_back_edges and [v] == "gray":
+            if detect_back_edges and color[v] == "gray":
                 back_edges[u] = v
         color[u] = "black"
         time += 1

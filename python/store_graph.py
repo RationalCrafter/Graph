@@ -29,6 +29,6 @@ if __name__ == "__main__":
         if len(t) != 2:
             print("Error: must provide 2 vertices")
         g.add_edge(t[0], t[1])
-        go_on = input("Are there more vertices(Y/n)? ").strip().lower()
+        go_on = input("Are there more edges(Y/n)? ").strip().lower()
         is_finished = go_on == "n"
     save_graph_to_json(g, filename + ".json")
