@@ -10,13 +10,15 @@ class AdjacencyListGraph(Graph):
 
     def add_vertex(self, v) -> None:
         if v not in self.adj_lst:
-            self.adj_lst[v] = []
+            # replace lists in favour of sets for lookup speed self.adj_lst[v] = []
+            self.adj_lst[v] = set()
 
     # be careful with the undirected case, wherein u->v implies v->u!
     def add_edge(self, u, v) -> None:
         if u in self.adj_lst:
             if v not in self.adj_lst[u]:
-                self.adj_lst[u].append(v)
+                # self.adj_lst[u].append(v)
+                self.adj_lst[u].add(v)
 
     def has_vertex(self, v) -> bool:
         return v in self.adj_lst
