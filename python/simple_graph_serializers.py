@@ -1,6 +1,8 @@
 import json
 from simple_graph import Graph
+from simple_weighted_graph import WeightedGraph
 from adj_list_graph import AdjacencyListGraph
+from weighted_adj_list_graph import WeightedAdjacencyListGraph
 
 
 def save_graph_to_json(graph: Graph, filename: str):
@@ -9,6 +11,18 @@ def save_graph_to_json(graph: Graph, filename: str):
         "vertices": [*graph.get_vertices()],
         "edges": {v: graph.get_neighbors(v) for v in graph},
     }
+
+    # Always include weights key
+    if isinstance(graph, WeightedGraph):
+        # include actual weights for weighted graphs
+        data["weights"] = {
+            (u, v): graph.get_weight(u, v)
+            for u in graph
+            for v in graph.get_neighbors(u)
+        }
+    else:
+        # for unweighted graphs, set weights to an empty dictionary
+        data["weights"] = {}
     with open(filename, "w+") as json_file:
         json.dump(data, json_file)
 
@@ -20,14 +34,23 @@ def read_graph_from_json(filename: str, graph_type) -> Graph:
     with open(filename, "r") as json_file:
         data = json.load(json_file)
         g = graph_type()
+        # add all vertices
         for v in data["vertices"]:
             g.add_vertex(v)
-        #            print(v)
-        #        print(data["edges"])
-        for u in data["edges"]:
-            for v in data["edges"][u]:
-                g.add_edge(u, v)
-    return g
+        # check if the graph is weighted by looking for the existence of weights in the file
+        if data["weights"]:
+            # if weights exist, we are dealing with a weighted graph
+            for u in data["edges"]:
+                for v in data["edges"][u]:
+                    g.add_edge(u, v)  # Add edge
+                    # set the weight for the edge
+                    g.set_weight(u, v, data["weights"].get((u, v)))
+        else:
+            # If no weights, it's an unweighted graph, just add edges
+            for u in data["edges"]:
+                for v in data["edges"][u]:
+                    g.add_edge(u, v)
+        return g
 
 
 if __name__ == "__main__":
