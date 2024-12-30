@@ -14,11 +14,12 @@ class AdjacencyListGraph(Graph):
             self.adj_lst[v] = set()
 
     # be careful with the undirected case, wherein u->v implies v->u!
-    def add_edge(self, u, v) -> None:
+    def add_edge(self, u, v, undirected=False) -> None:
         if u in self.adj_lst:
             if v not in self.adj_lst[u]:
-                # self.adj_lst[u].append(v)
                 self.adj_lst[u].add(v)
+                if undirected:
+                    self.adj_lst[v].add(u)  # if undirected, add the reverse edge
 
     def has_vertex(self, v) -> bool:
         return v in self.adj_lst
