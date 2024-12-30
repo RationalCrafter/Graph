@@ -1,11 +1,14 @@
-"""Implementation of a graph using an adjacency list. 
+"""Declaration of a simple graph base class. 
 Core operations:
     1.Insertion:
         -Add a vertex
         -Add an edge
     2. Membership testing:
         -Check if a vertex exists
-        -Check if an edge exists between 2 vertices."""
+        -Check if an edge exists between 2 vertices.
+    3. Extra functionality:
+        -Get the set of vertices in the graph
+        -Get the neighbors of a given vertex in the graph."""
 
 
 class Graph:
